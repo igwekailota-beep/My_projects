@@ -1,0 +1,40 @@
+{
+  "name": "theora-mvp",
+  "version": "1.0.0",
+  "description": "Theora - Productivity & Financial Copilot for Nigerian Students and Young Adults",
+  "type": "module",
+  "scripts": {
+    "dev": "rollup -c -w",
+    "build": "rollup -c",
+    "start": "npm run build && npm run dev"
+  },
+  "keywords": [
+    "productivity",
+    "finance",
+    "todo",
+    "calendar",
+    "ai"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@aws-sdk/client-bedrock-runtime": "^3.916.0",
+    "@rollup/plugin-commonjs": "^28.0.8",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "@rollup/plugin-replace": "^6.0.2",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/wasm-node": "^4.19.0",
+    "@types/node": "^22.13.11",
+    "autoprefixer": "^10.4.21",
+    "firebase": "^12.4.0",
+    "marked": "^16.4.1",
+    "postcss": "^8.5.6",
+    "rollup": "^4.52.5",
+    "rollup-plugin-copy": "^3.5.0",
+    "rollup-plugin-livereload": "^2.0.5",
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-serve": "^3.0.0",
+    "tailwindcss": "^3.4.18"
+  }
+}

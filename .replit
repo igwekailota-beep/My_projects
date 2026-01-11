@@ -1,0 +1,62 @@
+entrypoint = "index.js"
+modules = ["nodejs-22"]
+hidden = [".config", "package-lock.json"]
+
+[gitHubImport]
+requiredFiles = [".replit", "replit.nix", "package.json", "package-lock.json"]
+
+[nix]
+channel = "stable-24_11"
+packages = ["python314FreeThreading", "cmake", "python311Packages.pip"]
+
+[deployment]
+run = ["node", "index.js"]
+deploymentTarget = "autoscale"
+ignorePorts = false
+
+[agent]
+expertMode = true
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Development Server"
+
+[[workflows.workflow]]
+name = "Development Server"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run dev"
+waitForPort = 5000
+
+[workflows.workflow.metadata]
+outputType = "webview"
+
+[[ports]]
+localPort = 5000
+externalPort = 80
+
+[[ports]]
+localPort = 9000
+externalPort = 9000
+
+[[ports]]
+localPort = 35729
+externalPort = 3000
+
+[[ports]]
+localPort = 40005
+externalPort = 3002
+
+[[ports]]
+localPort = 44907
+externalPort = 3001

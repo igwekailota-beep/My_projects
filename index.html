@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Theora – Your Life’s Gentle Co-Pilot</title>
+    <style>
+      /* ===== Global Styles ===== */
+      html {
+        --primary-blue: #00bcd4;
+        --gradient-start: #00e0ff;
+        --gradient-end: #00bfa6;
+        --success: #4caf50;
+        --warning: #ffc107;
+        --error: #f44336;
+        --bg-primary: #f0f7fa;
+        --bg-secondary: #ffffff;
+        --text-primary: #00111E;
+        --text-secondary: #5A6B7B;
+        --border-color: #dbe9f0;
+      }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html,body{
+  width: 100vw;
+  height: 100vh;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+.container {
+  width: 90%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ===== Navbar ===== */
+.navbar {
+  background-color: var(--bg-secondary);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.nav-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.logo img {
+  height: 65px;
+  width: auto;
+  display: block;
+  margin-left: 0px;
+}
+
+
+.logo span {
+  color: var(--primary-blue);
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-primary);
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: var(--primary-blue);
+}
+
+/* ===== Buttons ===== */
+.btn-primary, .btn-outline {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background-color: var(--primary-blue);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.btn-outline {
+  border: 2px solid var(--primary-blue);
+  color: var(--primary-blue);
+}
+
+.btn-outline:hover {
+  background-color: var(--primary-blue);
+  color: #fff;
+}
+
+/* ===== Hero Section ===== */
+.hero {
+  padding: 4rem 0;
+  background: linear-gradient(120deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+  color: #fff;
+}
+
+.hero-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 2rem;
+}
+
+.hero-text h1 {
+  font-size: 2.5rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.hero-text h1 span {
+  color: #fff;
+}
+
+.hero-text p {
+  margin: 1rem 0 2rem;
+  color: #fff;
+  opacity: 0.9;
+}
+
+.hero-image img {
+  width: 100%;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== Features ===== */
+.features {
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.features h2 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.feature-card {
+  background-color: var(--bg-secondary);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+  border: 1px solid var(--border-color);
+}
+img{
+    width: fit-content;
+    height: fit-content;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+}
+
+.feature-card img {
+  width: 50px;
+  margin-bottom: 1rem;
+}
+
+/* ===== CTA Section ===== */
+.cta {
+  text-align: center;
+  padding: 4rem 0;
+  background-color: var(--text-primary);
+  color: var(--bg-primary);
+  border-top: 4px solid var(--primary-blue);
+}
+
+.cta h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.cta p {
+  margin-bottom: 2rem;
+}
+
+/* ===== Footer ===== */
+.footer {
+  text-align: center;
+  padding: 1.5rem;
+  background-color: var(--bg-secondary);
+  border-top: 1px solid var(--border-color);
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}  
+
+@media (max-width: 768px) {
+  .nav-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nav-links, .nav-content > .btn-primary {
+    display: none;
+  }
+
+  .hero-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .hero-text {
+    order: 2;
+  }
+
+  .hero-image {
+    order: 1;
+    margin-bottom: 2rem;
+  }
+
+  .hero-text h1 {
+    font-size: 2rem;
+  }
+
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-text h1 {
+    font-size: 1.8rem;
+  }
+
+  .btn-primary, .btn-outline {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-buttons {
+    display: flex;
+    flex-direction: column;
+  }
+}
+    </style>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Nunito:wght@400;500;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="container nav-content">
+            <div class="logo">
+                Theora<span>.</span>
+                <img src="../Assets/Theora_logo.png" alt="Theora Logo" />
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <a href="site/index.html" class="btn-primary">Try Demo</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1>Meet <span>Theora</span> — Your Life’s Gentle Co-Pilot</h1>
+                <p>
+                    Theora helps you manage your finances, deadlines, and habits
+                    in one smart, intuitive space. Simplify your day, grow your goals.
+                </p>
+                <div class="hero-buttons">
+                    <a href="site/index.html" class="btn-primary">Launch Demo</a>
+                    <a href="#features" class="btn-outline">Learn More</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="../Assets/dahbrd.jpg" alt="Theora dashboard preview" />
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2>Why Theora?</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <img src="../Assets/Premium Vector _ Artificial intelligence logo….jpeg" alt="AI Icon">
+                    <h3>AI Co-Pilot</h3>
+                    <p>Get real-time guidance from your AI assistant who learns your goals and helps you stay
+                        consistent.</p>
+                </div>
+                <div class="feature-card">
+                    <img src="../Assets/dashboard.jpeg" alt="Dashboard Icon">
+                    <h3>Unified Dashboard</h3>
+                    <p>All your deadlines, finances, and projects — clearly visualized in one calming space.</p>
+                </div>
+                <div class="feature-card">
+                    <img src="../Assets/games reward.jpeg" alt="Rewards Icon">
+                    <h3>Smart Rewards</h3>
+                    <p>Earn badges and milestones as you make progress — small wins, big motivation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Experience Theora in Action</h2>
+            <p>Jump into the live demo and explore how AI can simplify your productivity journey.</p>
+            <a href="site/index.html" class="btn-primary">Try The Demo</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>©️ 2025 Team Vorbis — Built together at the Hackathon</p>
+    </footer>
+</body>
+
+</html>

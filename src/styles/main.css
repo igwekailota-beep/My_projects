@@ -1,0 +1,354 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --primary-blue-rgb: 0, 188, 212;
+    --primary-blue: #00bcd4;
+    --success-rgb: 76, 175, 80;
+    --success: #4caf50;
+    --warning-rgb: 255, 193, 7;
+    --warning: #ffc107;
+    --error-rgb: 244, 67, 54;
+    --error: #f44336;
+
+    --bg-primary-rgb: 240, 247, 250;
+    --bg-primary: #f0f7fa;
+    --bg-secondary-rgb: 255, 255, 255;
+    --bg-secondary: #ffffff;
+    --text-primary-rgb: 0, 17, 30;
+    --text-primary: #00111E;
+    --text-secondary-rgb: 90, 107, 123;
+    --text-secondary: #5A6B7B;
+    --border-color-rgb: 219, 233, 240;
+    --border-color: #dbe9f0;
+    --btn-close-filter: none;
+
+    /* Gradient Source Colors */
+    --gradient-start: #00e0ff;
+    --gradient-end: #00bfa6;
+
+    /* Compiled Gradients */
+    --gradient-text: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    --gradient-card: linear-gradient(145deg, rgba(0, 224, 255, 0.05), rgba(0, 191, 166, 0.03));
+  }
+
+  body, html {
+    width: 100vw;
+    height: 100vh;
+  }
+  [data-theme="dark"] {
+    --bg-primary-rgb: 0, 17, 30;
+    --bg-primary: #00111E;
+    --bg-secondary-rgb: 2, 27, 52;
+    --bg-secondary: #021B34;
+    --text-primary-rgb: 245, 250, 255;
+    --text-primary: #f5faff;
+    --text-secondary-rgb: 245, 250, 255;
+    --text-secondary: rgba(245, 250, 255, 0.7);
+    --border-color-rgb: 0, 188, 212;
+    --border-color: rgba(0, 188, 212, 0.2);
+  }
+
+  * {
+    @apply box-border;
+  }
+  
+  body {
+    @apply bg-bg-primary text-text-primary antialiased transition-colors duration-300;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-text-primary font-bold;
+  }
+
+  h1 { @apply text-3xl; } /* 28px is not a default size, 3xl is 30px */
+  h2 { @apply text-3xl; }
+  h5 { @apply text-xl; } /* 20px */
+  h6 { @apply text-sm font-semibold; } /* 14px */
+}
+
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded-[10px] font-medium transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  
+  .btn-primary {
+    @apply bg-gradient-to-r from-gradient-start to-gradient-end text-white hover:opacity-90 active:opacity-80;
+  }
+
+  .btn-outline-blue {
+    @apply bg-transparent border border-primary-blue text-primary-blue hover:bg-primary-blue hover:text-white;
+  }
+
+  .btn-outline-green {
+    @apply bg-transparent border border-success text-success hover:bg-success hover:text-white;
+  }
+  
+  .card {
+    @apply bg-bg-secondary rounded-[20px] p-6 border border-border-color transition-colors duration-300;
+  }
+
+  .stat-card:hover {
+    transform: translateY(-5px);
+    @apply border-primary-blue;
+  }
+  
+  .input {
+    @apply w-full px-4 py-2 bg-bg-primary border border-border-color rounded-[10px] focus:ring-2 focus:ring-primary-blue focus:border-transparent outline-none transition-all;
+  }
+  
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+  
+  .badge-high {
+    @apply bg-error/10 text-error;
+  }
+  
+  .badge-medium {
+    @apply bg-warning/10 text-warning;
+  }
+  
+  .badge-low {
+    @apply bg-success/10 text-success;
+  }
+
+  /* Notifications */
+  .notification-toast {
+    @apply fixed top-5 right-5 w-80 p-4 rounded-lg shadow-lg bg-bg-secondary border border-border-color transform translate-x-[150%] transition-transform duration-500 ease-in-out;
+  }
+  .notification-toast.show {
+    @apply translate-x-0;
+  }
+
+  .ai-tip-card {
+    @apply fixed top-5 left-1/2 -translate-x-1/2 w-96 p-4 rounded-lg shadow-lg bg-bg-secondary border border-border-color transform -translate-y-[150%] transition-transform duration-500 ease-in-out;
+  }
+  .ai-tip-card.show {
+    @apply translate-y-0;
+  }
+
+  .notification-item {
+    @apply p-3 rounded-lg flex items-start space-x-3;
+    background-color: rgba(var(--primary-blue-rgb), 1);
+  }
+
+  .notification-item.todo {
+    background-color: rgba(var(--error-rgb), 0.8);
+    @apply border border-error/20;
+  }
+
+  .notification-item.event {
+    background-color: rgba(var(--primary-blue-rgb), 0.8);
+    @apply border border-primary-blue/20;
+  }
+
+  .notification-item.budget {
+    background-color: rgba(var(--warning-rgb), 0.8);
+    @apply border border-warning/20;
+  }
+
+  .notification-item.general {
+    background-color: rgba(var(--bg-primary-rgb), 0.8);
+    border-color: rgb(var(--border-color-rgb));
+  }
+
+  .notification-popup {
+    @apply w-72 p-3 rounded-lg shadow-lg flex items-start space-x-3 transition-all duration-300 ease-in-out transform translate-x-0;
+    background-color: rgba(var(--bg-primary-rgb), 1);
+  }
+
+ /* .notification-popup.todo {
+    background-color: rgba(var(--error-rgb), 0.8);
+    @apply border border-error/20;
+  }
+
+  .notification-popup.event {
+    background-color: rgba(var(--primary-blue-rgb), 0.8);
+    @apply border border-primary-blue/20;
+  }
+
+  .notification-popup.budget {
+    background-color: rgba(var(--warning-rgb), 0.8);
+    @apply border border-warning/20;
+  }
+
+  .notification-popup.general {
+    background-color: rgba(var(--bg-primary-rgb), 0.8);
+    border-color: rgb(var(--border-color-rgb));
+  } 
+
+*/}
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-gradient-start to-gradient-end;
+  }
+}
+
+.flip-card {
+  perspective: 1000px;
+}
+
+.flip-card-inner {
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.flip-card.flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  backface-visibility: hidden;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+}
+
+.filter-btn{
+  border-radius: 30px;
+  padding: 10px
+}
+
+.nav-logo{
+  width: 40px;
+  height: 40px;
+  margin-left: 0px;
+}
+
+/* AI Chat Specific Styles */
+.ai-chat-layout {
+  height: calc(100vh - 180px); /* Adjust based on header/nav height */
+}
+
+.chat-sidebar {
+  min-width: 200px;
+}
+
+.chat-sidebar .chat-session-item {
+  color: var(--text-primary);
+}
+
+.chat-messages > div {
+  display: flex;
+  margin-bottom: 8px;
+}
+
+.chat-messages > div > span {
+  padding: 8px 12px;
+  border-radius: 12px;
+  max-width: 70%;
+  word-wrap: break-word;
+}
+
+/* User message styling */
+.chat-messages > div.user-message {
+  justify-content: flex-end;
+}
+
+/* AI message styling */
+.chat-messages > div.ai-message {
+  justify-content: flex-start;
+}
+
+.chat-messages > div.ai-message > span {
+  background-color: var(--bg-secondary); /* Use secondary background for AI */
+  color: var(--text-primary);
+}
+
+/* Loading Indicator (Dot Pulse) */
+.dot-pulse {
+  position: relative;
+  left: -9999px;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: var(--primary-blue);
+  color: var(--primary-blue);
+  box-shadow: 9999px 0 0 -5px;
+  animation: dotPulse 1.5s infinite linear;
+  animation-delay: .25s;
+}
+
+.dot-pulse::before, .dot-pulse::after {
+  content: '';
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: var(--primary-blue);
+  color: var(--primary-blue);
+}
+
+.dot-pulse::before {
+  box-shadow: 9984px 0 0 -5px;
+  animation: dotPulseBefore 1.5s infinite linear;
+  animation-delay: 0s;
+}
+
+.dot-pulse::after {
+  box-shadow: 10014px 0 0 -5px;
+  animation: dotPulseAfter 1.5s infinite linear;
+  animation-delay: .5s;
+}
+
+@keyframes dotPulseBefore {
+  0% {
+    box-shadow: 9984px 0 0 -5px;
+  }
+  30% {
+    box-shadow: 9984px 0 0 2px;
+  }
+  60%, 100% {
+    box-shadow: 9984px 0 0 -5px;
+  }
+}
+
+@keyframes dotPulse {
+  0% {
+    box-shadow: 9999px 0 0 -5px;
+  }
+  30% {
+    box-shadow: 9999px 0 0 2px;
+  }
+  60%, 100% {
+    box-shadow: 9999px 0 0 -5px;
+  }
+}
+
+@keyframes dotPulseAfter {
+  0% {
+    box-shadow: 10014px 0 0 -5px;
+  }
+  30% {
+    box-shadow: 10014px 0 0 2px;
+  }
+  60%, 100% {
+    box-shadow: 10014px 0 0 -5px;
+  }
+}
+
+/* --- Typing Effect Styles --- */
+.typing-effect {
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+  padding-right: 2px;
+  border-right: 3px solid var(--primary-blue);
+  animation: blink-caret 0.75s step-end infinite;
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: var(--primary-blue); }
+}
+
+
